@@ -26,11 +26,13 @@ public class LojaGamesApplication implements CommandLineRunner {
             System.out.println("MENU DA LOCADORA");
             System.out.println("1. Adicionar um Jogo");
             System.out.println("2. Listar os Jogos");
-            System.out.println("3.Sair");
+            System.out.println("3. Atualizar um Jogo");
+            System.out.println("4. Excluir um Jogo");
+            System.out.println("5. Sair do sistema");
             System.out.print("Digite a opção desejada: ");
             int opcao = Integer.parseInt(teclado.nextLine());
 
-            if (opcao ==1){
+            if (opcao == 1) {
                 System.out.print("Digite o nome do jogo: ");
                 String nome = teclado.nextLine();
                 System.out.print("Digite a produtora do jogo: ");
@@ -48,17 +50,51 @@ public class LojaGamesApplication implements CommandLineRunner {
 
                 jogoRepository.save(novo);
 
-            } else if (opcao ==2) {
-                for (Jogo c : jogoRepository.findAll()){
-                    System.out.println(c.getNome() + "," + c.getDeveloper() + "," + c.getPlataforma() + "," + c.getAno());
+            } else if (opcao == 2) {
+                System.out.println("Código do jogo | Nome | Produtora | Plataforma | Ano");
+                for (Jogo c : jogoRepository.findAll()) {
+                    System.out.println(c.getId() + " - " + c.getNome() + ", " + c.getDeveloper() + ", " + c.getPlataforma() + ", " + c.getAno());
                 }
 
-            } else if (opcao ==3) {
-               break;
-            }else {
-                System.out.println("Opção Inválida");
-            }
+            } else if (opcao == 3) {
+                System.out.print("Digite o código do jogo que deseja atualizar: ");
+                Long id = Long.parseLong(teclado.nextLine());
+                if (jogoRepository.existsById(id)) {
+                    Jogo jogoParaAtualizar = jogoRepository.findById(id).get();
+                    System.out.print("Digite o novo nome do jogo: ");
+                    String novoNome = teclado.nextLine();
+                    System.out.print("Digite a nova produtora do jogo: ");
+                    String novaProdutora = teclado.nextLine();
+                    System.out.print("Digite a nova plataforma do jogo: ");
+                    String novaPlataforma = teclado.nextLine();
+                    System.out.print("Digite o novo ano do jogo: ");
+                    String novoAno = teclado.nextLine();
 
+                    jogoParaAtualizar.setNome(novoNome);
+                    jogoParaAtualizar.setDeveloper(novaProdutora);
+                    jogoParaAtualizar.setPlataforma(novaPlataforma);
+                    jogoParaAtualizar.setAno(novoAno);
+
+                    jogoRepository.save(jogoParaAtualizar);
+                    System.out.println("Jogo atualizado com sucesso!");
+                } else {
+                    System.out.println("Jogo não encontrado.");
+                }
+            } else if (opcao == 4) {
+                System.out.print("Digite o código do jogo que deseja excluir: ");
+                Long id = Long.parseLong(teclado.nextLine());
+                if (jogoRepository.existsById(id)) {
+                    jogoRepository.deleteById(id);
+                    System.out.println("Jogo excluído com sucesso!");
+                } else {
+                    System.out.println("Jogo não encontrado.");
+                }
+
+            } else if (opcao == 5) {
+                break;
+            } else {
+                System.out.println("Opção Inválida!");
             }
         }
-        }
+    }
+}
