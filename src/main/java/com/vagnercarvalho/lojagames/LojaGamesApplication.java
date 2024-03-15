@@ -23,12 +23,15 @@ public class LojaGamesApplication implements CommandLineRunner {
         Scanner teclado = new Scanner(System.in);
 
         while (true) {
-            System.out.println("MENU DA LOCADORA");
+            System.out.println("#########################################");
+            System.out.println("#          SISTEMA LOJA GAMES           #");
+            System.out.println("#########################################");
             System.out.println("1. Adicionar um Jogo");
             System.out.println("2. Listar os Jogos");
             System.out.println("3. Atualizar um Jogo");
             System.out.println("4. Excluir um Jogo");
             System.out.println("5. Sair do sistema");
+            System.out.println("-----------------------------------------");
             System.out.print("Digite a opção desejada: ");
             int opcao = Integer.parseInt(teclado.nextLine());
 
