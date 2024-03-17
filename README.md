@@ -1,6 +1,6 @@
 # Sistema Loja Games
 
-##### Linguagem Utilizada: Java | Framework: Spring Boot | Componente Curricular: Programar em Liguagem Orientada a Objetos Avançada
+##### Linguagem Utilizada: Java | Framework: Spring Boot | Componente Curricular: Programação em Liguagem Orientada a Objetos Avançada
 ###### (Samara Sales e Vagner Carvalho)
 
 O programa consiste na estruturação de um sistema de e-commerce, com interface modo texto, persistindo os dados em um banco de dados relacional, contendo consultas e relacionamentos entre as entidades
